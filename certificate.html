@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DriveSafe Certificate</title>
+  <link rel="stylesheet" href="stlye.css" />
+</head>
+<body>
+  <div class="cert-container" id="certificate">
+    <h1>DriveSafe Academy</h1>
+    <p>This certificate is awarded to</p>
+    <h2 id="studentName">[Student Name]</h2>
+    <p>for completing the</p>
+    <h3 id="courseTitle">[Course Title]</h3>
+    <p>Date: <span id="todayDate"></span></p>
+  </div>
+
+  <div class="cert-btns">
+    <button onclick="downloadCert()">Download as Image</button>
+  </div>
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    const name = localStorage.getItem("certificateName") || "[Student]";
+    const course = localStorage.getItem("certificateCourse") || "[Course]";
+    const date = new Date().toLocaleDateString();
+
+    document.getElementById("studentName").textContent = name;
+    document.getElementById("courseTitle").textContent = course;
+    document.getElementById("todayDate").textContent = date;
+
+    function downloadCert() {
+      html2canvas(document.getElementById("certificate")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "DriveSafe_Certificate.png";
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>

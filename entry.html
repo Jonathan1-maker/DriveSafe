@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Certificate Info</title>
+  <link rel="stylesheet" href="stlye.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Generate Your Certificate</h2>
+    <input type="text" id="nameInput" placeholder="Enter your full name" />
+    <input type="text" id="courseInput" placeholder="Enter course title" />
+    <button onclick="goToCertificate()">Generate Certificate</button>
+  </div>
+
+  <script>
+    function goToCertificate() {
+      const name = document.getElementById("nameInput").value.trim();
+      const course = document.getElementById("courseInput").value.trim();
+
+      if (!name || !course) {
+        alert("Please enter both name and course.");
+        return;
+      }
+
+      localStorage.setItem("certificateName", name);
+      localStorage.setItem("certificateCourse", course);
+      window.location.href = "certificate.html";
+    }
+  </script>
+</body>
+</html>
